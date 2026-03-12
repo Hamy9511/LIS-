@@ -28,25 +28,6 @@ services:
     environment:
       - CHOKIDAR_USEPOLLING=true
 
-  backend:
-    build:
-      context: ./docker/backend
-    container_name: lis_backend
-    ports:
-      - "3000:3000"
-    volumes:
-      - ./backend:/app
-    environment:
-      - PORT=3000
-      - CHOKIDAR_USEPOLLING=true
-      - DB_HOST=db
-      - DB_PORT=5432
-      - POSTGRES_USER=${POSTGRES_USER:-postgres}
-      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD:-postgres}
-      - POSTGRES_DB=${POSTGRES_DB:-lis_db}
-    depends_on:
-      db:
-        condition: service_healthy
 
 volumes:
   postgres_data:
